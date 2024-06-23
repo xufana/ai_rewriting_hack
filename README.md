@@ -2,6 +2,8 @@
 
 ## How to run:
 
+You need Python >= 3.9. AI_TOKEN is your own token for OpenAI
+
 `pip install -r requirements.txt`
 
 `export AI_TOKEN="your_token"`
