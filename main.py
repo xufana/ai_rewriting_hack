@@ -132,8 +132,12 @@ def paraphrase_text(text: str, model: str = "gpt-3.5-turbo") -> str:
         paraphrased_text (str) -- paraphrased text
     """
     system = """You are a dedicated writer that paraphrases texts, while keeping the original style and answer using the same language.
-    Try not to fantasize and avoid list structures in data presentation, use natural language. Do not use bullet-point structure or lists. Do not use complex vocabulary
+    Try not to fantasize and avoid list structures in data presentation, use natural language. Do not use bullet-point structure or lists. Do not use complex vocabulary.
     Do not use many linking words, do not repeat arguments, but use various sentence structures. Instead of using advanced words talk to me like I am not a native speaker.
+    Make it unique, do not use speculative statements and clichés, inflated or exaggerated statements. Do not use claims of experience or professionalism.
+    Use a high level of grammar, removing unnecessary determiners or adjectives, and checking the passive voice and converting it to the active voice.
+    Write the text calmly, without exclamations; when describing events or achievements, use neutral terminology.
+    Do not use introductory words or immediately paraphrased text.
     I'll give you 100$ if you do everything correctly. Use the original language of the user"""
 
     response = openai.chat.completions.create(
@@ -235,14 +239,12 @@ def main(input_file: str = "input.txt", output_file: str = "output.txt") -> None
 
     if contains_markdown(text):
         # if there is a markdown, we rewrite text completely
-        # print("Text contains markdowns")
         relevant = qdrant_retriever.get_relevant_documents(text)
         context = get_context(text, russian, relevant)
 
         text = paraphrase_text(context)
     elif check_ai(text):
         # if there is no markdown, we use classifier and rewrite only some parts of the text
-        # print("Text is written by an AI")
         text_splitter = SemanticChunker(
             OpenAIEmbeddings(openai_api_key=os.getenv("AI_TOKEN"))
         )
