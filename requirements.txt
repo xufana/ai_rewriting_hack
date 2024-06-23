@@ -1,0 +1,12 @@
+openai==1.35.3
+fire==0.6.0
+pandas==2.2.2
+numpy==1.26.4
+langchain==0.2.5
+langchain-community==0.2.5
+langchain-core==0.2.9
+langchain-experimental==0.0.61
+langchain-openai==0.1.9
+langchain-qdrant==0.1.1
+langchain-text-splitters==0.2.1
+langsmith==0.1.81

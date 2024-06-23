@@ -1,0 +1,12 @@
+__pycache__/
+
+data/
+
+.env
+.venv
+env/
+venv/
+
+freeze.txt
+input.txt
+output.txt
