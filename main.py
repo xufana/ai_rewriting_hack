@@ -99,7 +99,10 @@ def paraphrase_text(text,  model="gpt-3.5-turbo"):
         messages=[
             {"role": "system", "content": system},
             {"role": "user", "content": system + '\n' + text}
-        ]
+        ],
+        temperature=0.85,
+        top_p=0.85,
+        presence_penalty=-1,
     )
     paraphrased_text = response.choices[0].message.content.strip()
     return paraphrased_text
